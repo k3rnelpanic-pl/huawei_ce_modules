@@ -1,7 +1,18 @@
 ## Edited .py files for Huawei ce_module to work with non CloudEnigne switches
 Tested with Huawei S2750 switches and AR161 routers
+Working modules:
+- ce_config
+- ce_command
+- ce_facts
+Enough to automate configuration of Huawei devices
 
 Replace files in Ansible modules or change like in this repo
+ex. find / -name "ce*.py"
+
+Ansible documentation for CloudEngine modules:
+https://docs.ansible.com/ansible/latest/modules/list_of_network_modules.html#cloudengine
+
+#Usage Example
 
 Ex. playbook.yml file:
     
