@@ -226,7 +226,7 @@ class Config(FactsBase):
     """ Class config """
 
     COMMANDS = [
-        'display current-configuration configuration system'
+        'display current-configuration'
     ]
 
     def populate(self):
@@ -257,7 +257,7 @@ class Hardware(FactsBase):
         if data:
             self.facts['filesystems'] = re.findall(r'Directory of (.*)/', data)[0]
             self.facts['flash_total'] = re.findall(r'(.*) total', data)[0].replace(",", "")
-            self.facts['flash_free'] = re.findall(r'total \((.*) free\)', data)[0].replace(",", "")
+            self.facts['flash_free'] = re.findall(r' \((.*) free\)', data)[0].replace(",", "")
 
         data = self.responses[1]
         if data:

@@ -252,10 +252,7 @@ def _load_config(module, config):
     """Sends configuration commands to the remote device
     """
     connection = Connection(module._socket_path)
-    rc, out, err = exec_command(module, 'mmi-mode enable')
-    if rc != 0:
-        module.fail_json(msg='unable to set mmi-mode enable', output=err)
-    rc, out, err = exec_command(module, 'system-view immediately')
+    rc, out, err = exec_command(module, 'system-view')
     if rc != 0:
         module.fail_json(msg='unable to enter system-view', output=err)
     current_view_prompt = system_view_prompt = connection.get_prompt()
@@ -484,9 +481,9 @@ def main():
 
     if module.params['save']:
         if not module.check_mode:
-            run_commands(module, ['return', 'mmi-mode enable', 'save'])
+            run_commands(module, ['return', 'save'])
             result["changed"] = True
-    run_commands(module, ['return', 'undo mmi-mode enable'])
+    run_commands(module, ['return'])
 
     module.exit_json(**result)
 
